@@ -1,0 +1,28 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="connection.url">jdbc:postgresql://ec2-52-207-15-147.compute-1.amazonaws.com:5432/dqsueodc8vrn4
+        </property> <!-- BD Mane -->
+        <property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
+        <property name="connection.username">paojnxmahyyjzn</property> <!-- DB User -->
+        <property name="connection.password">22705ebb51cb71ce08e5fea0ec3e3b99436bf3b7ef5ff8e5dc994ac74e007a92
+        </property><!-- DB Password -->
+
+        <property name="dialect">org.hibernate.dialect.PostgreSQL82Dialect</property> <!-- DB Dialect -->
+        <property name="hbm2ddl.auto">update</property> <!-- create / create-drop / update -->
+
+        <property name="show_sql">true</property> <!-- Show SQL in console -->
+        <property name="format_sql">true</property> <!-- Show SQL formatted -->
+        <property name="hibernate.default_schema">db</property>
+        <mapping class="me.zuif.module3.model.Lecturer"/>
+        <mapping class="me.zuif.module3.model.Student"/>
+        <mapping class="me.zuif.module3.model.Group"/>
+        <mapping class="me.zuif.module3.model.Grade"/>
+        <mapping class="me.zuif.module3.model.Subject"/>
+
+    </session-factory>
+</hibernate-configuration>
