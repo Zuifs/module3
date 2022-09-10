@@ -8,7 +8,9 @@ import me.zuif.module3.repository.CrudRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class GradeRepository implements CrudRepository<Grade>, IGradeRepository {
     private static GradeRepository instance;
@@ -92,27 +94,18 @@ public class GradeRepository implements CrudRepository<Grade>, IGradeRepository 
     @Override
     public double getStudentAverageGrade(Student target) {
         int total = 0;
-        Map<Student, List<Subject>> subjectMap = new HashMap<>();
+        List<Subject> subjectList = new ArrayList<>();
         List<Grade> grades = findAll();
         for (Grade grade : grades) {
             Subject subject = grade.getSubject();
-
             int value = grade.getValue();
             List<Student> students = grade.getStudents();
-            for (Student student : students) {
-
-                subjectMap.compute(student, (k, v) -> {
-                    v = v != null ? v : new ArrayList<>();
-                    v.add(subject);
-                    return v;
-                });
-            }
-
             if (students.contains(target)) {
+                subjectList.add(subject);
                 total += value;
             }
         }
-        int subjectCount = subjectMap.get(target).size();
+        int subjectCount = subjectList.size();
         double avg = (double) total / (double) subjectCount;
         return avg;
     }

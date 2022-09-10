@@ -15,7 +15,7 @@ public class Lecturer {
     private String firstName;
     private String lastName;
     private int age;
-    @OneToOne(/*mappedBy = "subject_id",*/ cascade = CascadeType.PERSIST,
+    @OneToOne(cascade = CascadeType.PERSIST,
             fetch = FetchType.EAGER)
     private Subject subject;
 }

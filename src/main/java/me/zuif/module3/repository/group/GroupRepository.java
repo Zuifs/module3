@@ -107,23 +107,20 @@ public class GroupRepository implements CrudRepository<Group>, IGroupRepository 
         criteriaQuery.select(root).where(criteriaBuilder.like(root.get("name"), "%" + name + "%"));
         TypedQuery<Group> query = session.createQuery(criteriaQuery);
         List<Group> groups = query.getResultList();
+
         session.close();
         return groups;
     }
 
     @Override
     public Map<Group, Integer> getGroupsStudentsCount() {
-
-
         List<Group> groups = findAll();
 
         Map<Group, Integer> result = new LinkedHashMap<>();
-
         for (Group group : groups) {
             int count = group.getStudents().size();
             result.put(group, count);
         }
-
         return result;
     }
 
